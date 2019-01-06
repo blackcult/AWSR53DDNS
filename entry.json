@@ -1,0 +1,14 @@
+{
+	"Comment":"Updates A record to a specified value",
+	"Changes":[{
+		"Action":"UPSERT",
+		"ResourceRecordSet":{
+			"Name":[[name_var]],
+			"Type":"type_var",
+			"TTL":30, 
+			"ResourceRecords":[{
+				"Value":[[value_var]]
+			}]
+		}
+	}]
+}
