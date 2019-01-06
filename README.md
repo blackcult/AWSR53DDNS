@@ -3,6 +3,7 @@ This script is for those who are using AWS Route 53, but doesn't have luxury of 
 It can be used on EC2 instance as well
 Idea of this project is to run it on any machine behind your nat scheduled by cron
 Script is design to update only one record (so far)
+
 Tested on Ubuntu 18.04
 
 ## Requirments 
