@@ -24,3 +24,13 @@ Script assumpts you have already AWS CLI and profile setup. By default it guests
 "-p=" AWS profile, if not set script will use default
  
 "-o=" with an IP address to overwrite(test) with different IP then your public one
+
+"-a=" if you are using it on EC2 instance with IAM role. Will remove --profile from AWSCLI part
+
+## Example
+### Classic use
+./route53ddns.sh -t=A -n=subdomain.domain.com -i=45EWFE44545G 
+### Troubleshooting with -o option
+./route53ddns.sh -t=A -n=subdomain.domain.com -i=45EWFE44545G -o=8.8.8.8
+### Running on EC2 instance with IAM role with ChangeResourceRecordSets and ListHostedZones rights
+./route53ddns.sh -t=A -n=subdomain.domain.com -i=45EWFE44545G -o=8.8.8.8 -a
