@@ -20,6 +20,10 @@ case $i in
     TYPE="${i#*=}"
     shift 
     ;;
+	-a)
+    AWS="A"
+    shift 
+    ;;
     -n=*)
     NAME="${i#*=}"
     shift 
@@ -41,10 +45,13 @@ case $i in
     ;;
 esac
 done
+
+
 if [[ -n $1 ]]; then
 	echo ""
 	tail -1 $1
 fi
+
 
 if [ -z "$TYPE" -a -z "$NAME" -a -z "$HOSTZONEID" ]; then
 	echo "Missing arguments" 1>&3
@@ -58,8 +65,17 @@ if [ -z "$TYPE" -a -z "$NAME" -a -z "$HOSTZONEID" ]; then
 	exit 1
 fi
 
+
 if [ -z "$PROFILE" ]; then
 	PROFILE="default"
+fi
+
+
+if [ -z $AWS ]; then
+	AWSPROFILE="--profile $PROFILE"
+else
+	AWSPROFILE=""
+	echo "If you are using -a its better to use IAM role then user profile :)"
 fi
 
 #Current IP of the domain/subdomain - if exists
@@ -68,7 +84,7 @@ CURRENTIP=$(nslookup $NAME 8.8.8.8 | awk -F': ' 'NR==6 { print $2 } ')
 #Work with the json file + validation if there is a action needed
 if [[ $VALUE != $CURRENTIP ]]; then
 	sed -e "s/name_var/$NAME/g" -e "s/type_var/$TYPE/g" -e "s/value_var/$VALUE/g" entry.json > entrytemp.json
-	aws route53 --profile "$PROFILE" change-resource-record-sets --hosted-zone-id "$HOSTZONEID" --change-batch file://entrytemp.json
+	aws route53 "$AWSPROFILE" change-resource-record-sets --hosted-zone-id "$HOSTZONEID" --change-batch file://entrytemp.json
 	#checking for error output from AWSCLI
 	if [ $? -eq 0 ]; then
 		echo "Changing IP from $CURRENTIP to $VALUE"
