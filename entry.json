@@ -3,11 +3,11 @@
 	"Changes":[{
 		"Action":"UPSERT",
 		"ResourceRecordSet":{
-			"Name":[[name_var]],
+			"Name":"name_var",
 			"Type":"type_var",
 			"TTL":30, 
 			"ResourceRecords":[{
-				"Value":[[value_var]]
+				"Value":"value_var"
 			}]
 		}
 	}]
