@@ -61,6 +61,7 @@ if [ -z "$TYPE" -a -z "$NAME" -a -z "$HOSTZONEID" ]; then
 	echo '"-i=" for hostzone ID (needed)' 1>&3
 	echo '"-p=" AWS profile, if not set script will use default (optional)' 1>&3
 	echo '"-o=" with an IP address to overwrite(test) with different IP then your public (optional)' 1>&3
+	echo '"-a=" if you are using it on EC2 instance with IAM role. Will remove --profile from AWSCLI part' 1>&3
 	echo "_____________________"
 	exit 1
 fi
