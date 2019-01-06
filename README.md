@@ -14,9 +14,13 @@ Script assumpts you have already AWS CLI and profile setup. By default it guests
 
 ## Arguments
 ### Mandatory (script will fail if any of those is missing)
--t= with record type (A,CNAME,...)
--n= with record name (FQDN)
--i= for hostzone ID
+"-t=" with record type (A,CNAME,...)
+ 
+"-n=" with record name (FQDN)
+ 
+"-i=" for hostzone ID
+ 
 ### Optional
--p= AWS profile, if not set script will use default
--o= with an IP address to overwrite(test) with different IP then your public one
+"-p=" AWS profile, if not set script will use default
+ 
+"-o=" with an IP address to overwrite(test) with different IP then your public one
