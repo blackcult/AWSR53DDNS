@@ -76,7 +76,9 @@ if [ -z $AWS ]; then
 	AWSPROFILE="--profile $PROFILE"
 else
 	AWSPROFILE=""
+	if [ -z "$PROFILE" ]; then
 	echo "If you are using -a its better to use IAM role then user profile :)"
+	fi
 fi
 
 #Current IP of the domain/subdomain - if exists
